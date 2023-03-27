@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { styled, AppBar, Toolbar, Typography, Button, blue} from '@mui/material';
+import { styled, AppBar, Toolbar, Typography, Button, blue, createTheme, ThemeProvider} from '@mui/material';
+import { useState } from "react"; 
 
 import Cardcomponent from '../organisms/Cardcomponent';
 
@@ -55,7 +56,40 @@ let arr = [
   }
 ]
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#22223b',
+    },
+    secondary: {
+      main: "#d4ddff",
+    },
+  },
+});
+
+
 export default function ButtonAppBar() {
+
+  const [mode, setMode] = useState("light");
+  const [item, setitem] = useState("Dark mode");
+  const[col,setcol]= useState('primary');
+
+  const changeMode = () => {
+    if (mode === "light") {
+      setMode("dark");
+      document.body.style.backgroundColor = "black";
+      setitem("Light mode");
+      setcol('secondary');
+      } 
+
+    else {
+      setMode("light");
+      document.body.style.backgroundColor = "white";
+      setitem("Dark mode");      
+      setcol('primary');
+    }
+  }
+
   return (
     <>
       <AppBar position="static">
@@ -74,13 +108,17 @@ export default function ButtonAppBar() {
         </Toolbar>
       </AppBar>
 
+      <ThemeProvider theme={theme}>
+      <Button color={col} variant="contained" onClick={changeMode}>{item}</Button>
+      </ThemeProvider>
+
     {
-       arr.map((item)=>(
-        <Cardcomponent data={item} />
+       arr.map((item,key)=>(
+        <Cardcomponent key={key} data={item} myfunc={mode}  />
         )
         )
     }
-      
+
     </>
   );
 }
