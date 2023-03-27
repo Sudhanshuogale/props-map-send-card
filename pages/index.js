@@ -90,6 +90,12 @@ export default function ButtonAppBar() {
     }
   }
 
+
+  const Btn=styled(Button)(()=>({
+    border:'3px solid red ',
+    margin:'30px 92vw'
+  }))
+
   return (
     <>
       <AppBar position="static">
@@ -109,7 +115,7 @@ export default function ButtonAppBar() {
       </AppBar>
 
       <ThemeProvider theme={theme}>
-      <Button color={col} variant="contained" onClick={changeMode}>{item}</Button>
+      <Btn color={col} variant="contained" onClick={changeMode}>{item}</Btn>
       </ThemeProvider>
 
     {
