@@ -20,7 +20,13 @@ const Cardcomponent = (props) => {
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
+    // border:'2px solid red'
   }));
+
+const Cardcontent=styled(CardContent)(()=>({
+  // border:"3px solid black",
+    border:myfunc==='light'?'4px solid black':'4px solid blue',
+}))
 
   const StyledTypography = styled(Typography)(() => ({
     variant: "h6",
@@ -29,17 +35,19 @@ const Cardcomponent = (props) => {
     backgroundColor:"white",
     // backgroundColor: myfunc === "light" ? "black" : "aqua",
     borderRadius: "12px",
+    // border:'2px solid red'
+
   }));
 
   return (
     <>
       <Cards>
         <Card>
-          <CardContent>
+          <Cardcontent>
             <StyledTypography>Name is {data.name}</StyledTypography>
             <StyledTypography>Age is {data.age}</StyledTypography>
             <StyledTypography>City is {data.city}</StyledTypography>
-          </CardContent>
+          </Cardcontent>
         </Card>
       </Cards>
     </>
