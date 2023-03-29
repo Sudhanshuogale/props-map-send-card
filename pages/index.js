@@ -1,4 +1,5 @@
 import * as React from "react";
+// import { Routes, Route, useNavigate, Router } from "react-router-dom";
 import {
   styled,
   AppBar,
@@ -11,38 +12,10 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import Link from "next/link";
+import Login from "./login";
 
 import Cardcomponent from "../organisms/Card/Cardcomponent";
-
-const Styledbutton = styled(Button)(({ theme }) => ({
-  fontWeight: 800,
-  color: "inherit",
-  variant: "contained",
-  padding: theme.spacing(3),
-}));
-
-const Styledbutton2 = styled(Button)(({ theme }) => ({
-  color: "white",
-  variant: "outlined",
-  fontSize: 16,
-  border: "1px solid black",
-  backgroundColor: "darkblue",
-  borderColor: "#0063cc",
-  padding: "6px 12px",
-  borderRadius: "10px",
-  size: "small",
-  "&:hover": {
-    backgroundColor: blue,
-  },
-}));
-
-const Space = styled("div")(({ theme }) => ({
-  paddingRight: "250px",
-  [theme.breakpoints.down("md")]: {
-    width: "50px",
-    paddingRight: "150px",
-  },
-}));
+import LayoutTemplate from "@/templates/layout/LayoutTemplate";
 
 let arr = [
   {
@@ -67,21 +40,23 @@ let arr = [
   },
 ];
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#22223b",
-    },
-    secondary: {
-      main: "#d4ddff",
-    },
-  },
-});
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: "#22223b",
+//     },
+//     secondary: {
+//       main: "#d4ddff",
+//     },
+//   },
+// });
 
 export default function ButtonAppBar() {
-  const [mode, setMode] = useState("light");
-  const [item, setitem] = useState("Dark");
-  const [col, setcol] = useState("primary");
+  const logout = "Login";
+
+  // const [mode, setMode] = useState("light");
+  // const [item, setitem] = useState("Dark");
+  // const [col, setcol] = useState("primary");
 
   const changeMode = () => {
     if (mode === "light") {
@@ -104,7 +79,8 @@ export default function ButtonAppBar() {
 
   return (
     <>
-      <AppBar position="static">
+      <LayoutTemplate logout={logout}>
+        {/* <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             NavBar
@@ -122,20 +98,20 @@ export default function ButtonAppBar() {
             </Styledbutton>
           </Space>
 
-          <Styledbutton2>Login</Styledbutton2>
-          <Styledbutton2>Signup</Styledbutton2>
+          <Styledbutton2 onClick={loginhandler}>Signup</Styledbutton2>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
 
-      <ThemeProvider theme={theme}>
-        <Btn color={col} variant="contained" onClick={changeMode}>
-          {item}
-        </Btn>
-      </ThemeProvider>
+        {/* <ThemeProvider theme={theme}>
+          <Btn color={col} variant="contained" onClick={changeMode}>
+            {item}
+          </Btn>
+        </ThemeProvider> */}
 
-      {arr.map((item, index) => (
+        {/* {arr.map((item, index) => (
         <Cardcomponent key={index} data={item} value={mode} />
-      ))}
+      ))} */}
+      </LayoutTemplate>
     </>
   );
 }
